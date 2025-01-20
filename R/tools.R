@@ -1,5 +1,5 @@
 
-
+# dictionary tool ----
 check_dictionary_for_keyword <- function(keyword = "yellow cap"){
 fungai::mushroom_dictionary |>
   dplyr::filter(stringr::str_detect(information, keyword))
@@ -13,11 +13,10 @@ check_dictionary_tool <- ellmer::tool(
   )
 )
 
+# image tool ----
 check_for_image_and_encode <- function(prompt = "this is a prompt"){
-
   stringr::str_extract(prompt, "\\S+\\.(png|jpg|jpeg)") |>
   ellmer::content_image_file()
-
 }
 
 check_image_tool <- ellmer::tool(
