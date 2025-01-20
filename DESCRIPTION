@@ -1,0 +1,15 @@
+Package: fungai
+Title: fungai is an ai mushroom assistant
+Version: 0.0.0.9000
+Authors@R: 
+    person("frank", "hull", , "frankiethull@gmail.com", role = c("aut", "cre"))
+Description: fungai has been system prompted with information on 237 distinct mushrooms in addition to the LLMs training. given information or a photo, fungai should be able to help you identify said mushroom. this is an experimental library for testing edge focused LLMs as specialized assistants.  
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: 
+    R (>= 3.5)
+LazyData: true
+Imports: 
+    ellmer
