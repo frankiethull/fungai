@@ -8,7 +8,7 @@
 
 {fungai} has been given additional knowledge of over 200+ mushroom
 species, it also happens to be a mushroom. fungai is a friendly ai that
-helps identify mushrooms and describe them.
+helps identify mushrooms and describe them (but never eat them).
 
 ## Installation
 
@@ -35,96 +35,100 @@ fungai::fungai(llm_model = "llama3.2-vision",
                          Cap 5 cm across, stem 7 cm tall * 1 cm thick, 
                          can you reference your dictionary and help me identify it?"
                ) |> cat()
-#> A mystery mushroom awaits!
+#> Welcome to mycology!
 #> 
-#> First, let's review the characteristics:
+#> I'm happy to help you with your orange mushroom identification. As you suspected, gill-like ridges are characteristic of some polypores, which belong to the Phylum Basidiomycota.
 #> 
-#> * No distinct gills
-#> * Gill-like ridges (also known as pseudogills or pseudo-poroid tissue)
-#> * Polypore-like appearance
-#> * Growing out of the ground in woods
-#> * Cap: 5 cm across
-#> * Stem: 7 cm tall x 1 cm thick
+#> To provide a more accurate identification, I'll need to rely on general descriptive features rather than direct species reference since we can't match exact descriptions in my training data. That being said, based on your description:
 #> 
-#> To tackle this, I'll rely on my knowledge and some trusted field guides. There are many possibilities within the polypore family (Phallomycetidae), but I'll focus on some species that match these characteristics.
+#> 1.  The orange color and presence of gill-like ridges are key characteristics to consider. Some polypores with such features could be members of the genus Pycnoporellus or Fomitopsis (although these tend to be brownish in color). Another group is the genus Datronia, which includes some species that have a orange-brown cap and gill-like ridges.
+#> 2.  The size of the mushroom doesn't necessarily narrow down the identification, as various polypore species can range from small to quite large.
 #> 
-#> Some common polypores with pseudo-gills or ridges include:
+#> To further refine your search:
 #> 
-#> * **Polyporus varius**: This North American species can have a range of cap sizes, and its pseudoglls can resemble gill-like structures. However, its stem is typically thicker (2-4 cm) than the 1 cm you mentioned.
-#> * **Laetiporus sulphureus** (Sulphur Shelf): This polypore is known for growing directly out of the ground, and it has a fan-shaped or semicircular cap with ridges that resemble gills. The stem can be up to 10 cm tall x 1-3 cm thick.
-#> * **Inonotus hispidus** (Hairy Bracket): This one has pseudo-glls on its underside and can grow out of the ground in forests. The cap is typically 5-15 cm across, which could match your measurement.
+#> *   Consider observing more detailed features of your specimen:
+#>     *   Are the gill-like ridges very prominent or more subtle?
+#>     *   Does the cap have any notable texture, pores, or other patterns?
+#>     *   Is the stem fragile and snaps easily (indicative of soft wood tissue beneath) or sturdy (suggesting growth on a less decayed substrate)?
+#>     *   Check for any mycelium or fungal material around the base of the stem
+#> 3.  Can you provide more information about the habitat where you found it? This can be crucial in narrowing down possible species, such as:
+#>     *   Was it growing near trees, logs, or on soil?
+#>     *   What types of vegetation are in the area?
 #> 
-#> To help narrow it down, I have a few questions:
-#> 
-#> 1. Can you describe the coloration of the mushroom? Is there any distinctive staining or tint?
-#> 2. Are the pseudo-gills more like narrow ridges (Laetiporus or Inonotus-like) or are they broader and flatter (like some Polyporus species)?
-#> 3. Has the polypore any notable features, such as an annulus (ring on stem), a bulbous base, or unusual texture?
-#> 
-#> By gathering more details, I can better guide you in your mushroom sleuthing adventure!
+#> The MyCoBank database and other online resources, include detailed descriptions and images of various mushroom species.
 ```
 
 using an image of the mushroom:
 
 ``` r
-fungai::fungai(llm_model = "llama3.2-vision",
-               prompt    = ellmer::content_image_file(
+
+image <- ellmer::content_image_file(
                              path   = system.file("images", "6.png", package = "fungai"), 
-                             resize = "high"
+                             resize = "low"
                              )
+
+fungai::fungai(llm_model = "llava",
+               prompt    = image
                ) |> cat()
-#> Can I identify this mushroom? Is it poisonous?
-#> 
-#> Step 1: Identify the features of yellow-orange-gilled mushrooms that are often mistaken for chanterelles. 
-#> 
-#> Here the features are: large, cone-shaped cap; white to light orange pores.
-#> 
-#> Step 2: Look at how wide the stems are compared to their height.  
-#> 
-#> In this photo they appear as long white cylinders. The stems in Chanterelles may or may not have a partial veil, and these do not appear on Chanterelle stems.
-#> 
-#> Step 3: Chanterelles can be confused with False Chanterelles (Hygrophorus speciosus) of which the following characteristics apply:
-#> 
-#> * Large, cone-shaped cap
-#> * A whitish color at the cap margins that turns to peach or yellow towards the edge.
-#> * A whitish margin on a young false chanterelle; its white surface may become gray and even purplish with age. In contrast the stems appear white throughout.
-#> 
-#> Step 4: The False Chanterelles often form clusters in association with birch trees, sometimes with mushrooms of varying shapes and maturity.
-#> 
-#> The mushrooms in this image seem to be from several different fungi, which may make it difficult to identify them.
-#> 
-#> Step 5: If a mushroom has pores rather than teeth or gills at the underside of its cap  it is an order Agaricomycetidae, family Hygrophoraceae. They tend to grow in clusters associated with oaks or beeches. The stem has no partial veil. The cap can grow from almost black when young to a light peach color at maturity. It has white flesh and white gills.
-#> 
-#> Step 6: A mushroom called False Chanterelle (Hygrophorus speciosus) grows on both sides of the Atlantic Ocean, in Europe, North America. Its white flesh often smells very pungent like apricot nectar. Its cap grows from 10 to 13 cm across and a height of nearly twice that tall.
-#> 
-#> Step 7: The mushroom you posted appears to have yellow gills. Yellow colors on a cap are often characteristic of Amanita species. They commonly grow from soil in association with tree roots. Many edible amanitas will be confused with poisonous ones, so please consult an expert before eating them; never take more than one bite as symptoms develop.
-#> 
-#> Step 8: One mushroom similar to False Chanterelle has pores rather than gills:
-#> 
-#> * The genus Craterellus.
-#> * It grows from both the ground and dead wood. 
-#> * Grows in groups; their young fruit bodies often remain underground covered by matted leaves for several months before emerging with a yellowish-brick cap.
-#> 
-#> It must be noted that mushrooms can grow to different sizes depending on where they grew and what they were competing against. This mushroom seems to be 7-11 cm tall and between 3 and 6 cm wide, which means it could be the False Chanterelle. If this is your finding, please exercise extreme caution when handling fungi, as there’s always the possibility of an allergic reaction.
-#> 
-#> Step 9: There are thousands of fungal species in North America with varying shapes, including:
-#> 
-#> * Conical caps
-#> * White and black-spored gills
-#> * No stem or very short stem
-#> 
-#> There is no way this photo alone could definitively identify any mushroom.
+#>  The image shows two large yellow or orange mushrooms with brown stems sitting on the ground in a grassy area. This type of mushroom is commonly known as porcini and is a wild edible. It can be found in temperate forests throughout Europe, Asia, North Africa, and parts of North America. These mushrooms are typically gathered in late summer or fall when they're fully grown. They're highly sought after for their culinary value, but it's crucial to only consume mushrooms you have personally foraged or identified with certainty since many wild mushrooms can be toxic if ingested without proper knowledge.
 ```
 
 more generic mushroom questions:
 
 ``` r
-fungai::fungai(llm_model = "llama3.3", 
-               prompt = "hello fungai! what mushrooms are found in the US Rocky Mountains?")
-#> [1] "The Rocky Mountains offer a diverse range of habitats for various mushroom species. Here are some common ones you might find:\n\n**Edible Mushrooms:**\n\n1. **Chanterelle (Cantharellus cibarius)**: Fruity, apricot-like aroma and peach-colored flesh.\n2. **Boletes (Boletus spp.)**: Various species, including the prized King Bolete (Boletus edulis).\n3. **Morels (Morchella spp.)**: Honeycomb-like appearance, often found in burn areas or near streams.\n4. **Oyster Mushrooms (Pleurotus ostreatus)**: Growing on trees, stumps, or decaying wood.\n5. **Pine Mushrooms (Tricholoma magnivelare)**: Found under pine trees, with a sweet, nutty flavor.\n\n**Poisonous Mushrooms:**\n\n1. **Destroying Angel (Amanita virosa)**: Highly toxic, resembling a large, white button mushroom.\n2. **False Morel (Gyromitra esculenta)**: Contains a toxin that can cause vomiting and other symptoms.\n3. **Conocybe filaris**: A small, bell-shaped mushroom that's highly toxic.\n\n**Other Notable Mushrooms:**\n\n1. **Lion's Mane (Hericium erinaceus)**: A unique, cascading mushroom with a seafood-like flavor.\n2. **Turkey Tail (Trametes versicolor)**: A common, colorful bracket fungus with potential medicinal properties.\n3. **Puffballs (Lycoperdon spp.)**: Various species, including the giant puffball (L. giganteum).\n\nPlease keep in mind that mushroom identification requires expertise and caution. Some species can be toxic or even deadly if ingested, so it's essential to:\n\n1. Research thoroughly before foraging.\n2. Consult with experienced mycologists or field guides.\n3. Avoid eating mushrooms that are past their prime or have been contaminated.\n\nRemember, always prioritize your safety and the environment when foraging for wild mushrooms.\n\nWould you like to know more about a specific species or region within the Rocky Mountains?"
+fungai::fungai(llm_model = "phi4", 
+               prompt    = "hello fungai! what mushrooms are found in the US Rocky Mountains?"
+               ) |> cat()
+#> Hello! The U.S. Rocky Mountains are home to a diverse array of fungi, including many species of mushrooms. Here's an overview of some common types you might find:
+#> 
+#> 1. **Agaricus bisporus** - Also known as the white button mushroom or portobello when mature, this is commonly cultivated and also found in natural environments.
+#> 
+#> 2. **Clitocybe nuda** - Known for its delicate, funnel-shaped caps and mild flavor, often collected on account of its edibility.
+#> 
+#> 3. **Suillus luteus (also known as Slippery Jack)** - Recognizable by its slippery cap surface that’s covered with yellow granules, this mushroom forms symbiotic relationships with coniferous trees.
+#> 
+#> 4. **Amanita muscaria** and **Amanita phalloides**: While these are found throughout temperate regions including the Rockies, they're particularly noteworthy due to their toxicity. Amanita muscaria is famous for its red cap and white spots, whereas amanita phalloides (the death cap) is highly poisonous.
+#> 
+#> 5. **Russula species** - Known as brittlegills, these mushrooms are typically bright-colored with brittle caps and are widespread throughout the mountainous regions.
+#> 
+#> 6. **Boletus edulis** and related species - Such as the coveted porcini or King Bolete, they form symbiotic relationships with conifers and have a distinctive sponge-like surface under their caps instead of gills.
+#> 
+#> 7. **Cortinarius species** - These mushrooms are diverse in color and often have fibrous threads called cortina hanging from the cap margin, and many can be quite toxic or psychoactive.
+#> 
+#> 8. **Lyophyllum decastes** (commonly known as woody blewit) - Known for its brown caps with purple edges and edibility when cooked well.
+#> 
+#> 9. **Tricholoma magnivelare** - Sometimes referred to as “the large cap tricholoma,” it forms mycorrhizal associations with trees, particularly conifers.
+#> 
+#> 10. **Galerina marginata (Deadly Galerina)** - A highly poisonous species that resembles chanterelles and should be strictly avoided due to its toxicity.
+#> 
+#> When exploring mushrooms in the Rocky Mountains or anywhere else, always ensure proper identification before consuming them. Some edible varieties can look very similar to toxic ones, and professional expertise is crucial for safe mushroom foraging.
 ```
 
 ``` r
 fungai::fungai(llm_model = "llama3.3", 
-               prompt = "hello fungai! can you give me a cool new mycelium catch phrase?")
-#> [1] "My friend, I've got a few fun-gi options for you!\n\nHere are some mycelium-inspired catchphrases:\n\n1. **\"Spread the spores, spread the love!\"** \n2. **\"Mycelium minds think alike!\"** \n3. **\"We're all connected, hyphae-style!\"** (hyphae being the branching filaments that make up mycelium)\n4. **\"Fungal futurism, now!\"**\n5. **\"The mycelium is mightier than the sword!\"** \n6. **\"Infecting the world with awesomeness, one spore at a time!\"**\n7. **\"Myco-momentum: growing stronger every day!\"** (myco- being short for mycology, the study of fungi)\n8. **\"Spreading like mycelium, but without the decay (hopefully)!\"\n\nPick your favorite, or feel free to modify them to create your own unique mycelium catchphrase!\n\nWhich one do you like best? Do you have any specific ideas or themes in mind for your catchphrase? I'm here to help!"
+               prompt    = "hello fungai! can you give me a cool new mycelium catch phrase?"
+               ) |> cat()
+#> My friend, I'd be delighted to help you with that!
+#> 
+#> Here are some cool new mycelium catchphrases for you:
+#> 
+#> 1. **"Spawn the Revolution!"** - Perfect for inspiring change and growth.
+#> 2. **"Fungi Forward, Always!"** - A motivational phrase to keep you moving forward.
+#> 3. **"Mycelium Mindset: Connect, Adapt, Thrive!"** - Embracing the networked, resilient nature of mycelium.
+#> 4. **"Weave Your Web of Wonder!"** - Celebrating the intricate, awe-inspiring connections in the mycelium kingdom.
+#> 5. **"Spore-adic Excellence, Every Time!"** - Striving for greatness, one spore at a time.
+#> 
+#> Which one resonates with you, or would you like me to come up with more options?
+```
+
+sharing fungai thoughts between different models:
+
+``` r
+
+fungai::fungai(llm_model = "phi4",
+               prompt    = "write a few mushroom puns, 
+                            ask yourself which is the best") |>
+  fungai::fungai(llm_model = "llama3.3",
+                 prompt = _)
+#> [1] "What a delightful collection of mushroom puns! 😄 I'll have to review them carefully to decide which one rises to the top (or should I say, \"sprouts\" to the top?).\n\nAfter careful consideration, I think my favorite is... **Spore-ing Success**: When life gives you spores, make... a morel-ish stew! 🍄👏 There's something about the play on words between \"spore-ing\" and \"score-ing\" that really grows on me (I couldn't resist another fungi pun 😊). Plus, the idea of making a morel-ish stew is just so clever and tasty-sounding!\n\nOf course, all the other puns are fun-gi too (sorry, had to!), but **Spore-ing Success** stands out for its creativity and wordplay. Well done! 👏 Do you have a favorite among these, or would you like me to come up with some more mushroom puns? 🤔🍄"
 ```

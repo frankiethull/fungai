@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-{fungai} has been given additional knowledge of over 200+ mushroom species, it also happens to be a mushroom. fungai is a friendly ai that helps identify mushrooms and describe them. 
+{fungai} has been given additional knowledge of over 200+ mushroom species, it also happens to be a mushroom. fungai is a friendly ai that helps identify mushrooms and describe them (but never eat them). 
 
 ## Installation
 
@@ -33,7 +33,7 @@ pak::pak("frankiethull/fungai")
 These are basic examples which show you how to use fungai:
 
 using a prompt with information you have about the mushroom:
-```{r example}
+```{r example, cache=TRUE}
 library(fungai)
 
 fungai::fungai(llm_model = "llama3.2-vision",
@@ -48,24 +48,41 @@ fungai::fungai(llm_model = "llama3.2-vision",
 
 
 using an image of the mushroom:
-```{r}
-fungai::fungai(llm_model = "llama3.2-vision",
-               prompt    = ellmer::content_image_file(
+```{r, cache=TRUE}
+
+image <- ellmer::content_image_file(
                              path   = system.file("images", "6.png", package = "fungai"), 
-                             resize = "high"
+                             resize = "low"
                              )
+
+fungai::fungai(llm_model = "llava",
+               prompt    = image
                ) |> cat()
 ```
 
 more generic mushroom questions:
-```{r}
-fungai::fungai(llm_model = "llama3.3", 
-               prompt = "hello fungai! what mushrooms are found in the US Rocky Mountains?")
+```{r, cache=TRUE}
+fungai::fungai(llm_model = "phi4", 
+               prompt    = "hello fungai! what mushrooms are found in the US Rocky Mountains?"
+               ) |> cat()
 ```
 
 
-```{r}
+```{r, cache=TRUE}
 fungai::fungai(llm_model = "llama3.3", 
-               prompt = "hello fungai! can you give me a cool new mycelium catch phrase?")
+               prompt    = "hello fungai! can you give me a cool new mycelium catch phrase?"
+               ) |> cat()
 ```
+
+sharing fungai thoughts between different models:
+```{r, cache=TRUE}
+
+fungai::fungai(llm_model = "phi4",
+               prompt    = "write a few mushroom puns, 
+                            ask yourself which is the best") |>
+  fungai::fungai(llm_model = "llama3.3",
+                 prompt = _)
+
+```
+
 
