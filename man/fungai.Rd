@@ -6,7 +6,8 @@
 \usage{
 fungai(
   llm_model = "llama3.2-vision",
-  prompt = "hello, fungai!! tell me something about morels!"
+  prompt = "hello, fungai!! tell me something about morels!",
+  enable_tools = FALSE
 )
 }
 \arguments{
@@ -14,7 +15,7 @@ fungai(
 
 \item{prompt}{a prompt for the model}
 
-\item{...}{pass thru for chat}
+\item{enable_tools}{a switch for tools}
 }
 \value{
 fungai responses
