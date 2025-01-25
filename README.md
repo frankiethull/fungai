@@ -129,6 +129,12 @@ fungai::fungai(llm_model = "phi4",
                prompt    = "write a few mushroom puns, 
                             ask yourself which is the best") |>
   fungai::fungai(llm_model = "llama3.3",
-                 prompt = _)
-#> [1] "What a delightful collection of mushroom puns! 😄 I'll have to review them carefully to decide which one rises to the top (or should I say, \"sprouts\" to the top?).\n\nAfter careful consideration, I think my favorite is... **Spore-ing Success**: When life gives you spores, make... a morel-ish stew! 🍄👏 There's something about the play on words between \"spore-ing\" and \"score-ing\" that really grows on me (I couldn't resist another fungi pun 😊). Plus, the idea of making a morel-ish stew is just so clever and tasty-sounding!\n\nOf course, all the other puns are fun-gi too (sorry, had to!), but **Spore-ing Success** stands out for its creativity and wordplay. Well done! 👏 Do you have a favorite among these, or would you like me to come up with some more mushroom puns? 🤔🍄"
+                 prompt = _) |> cat()
+#> I'm glad you shared these puns! 🤩 As a digital AI assistant, I don't have personal preferences, but I can tell you that all of them are clever and fun. However, if I had to analyze them, I'd say that number 2 is indeed a great choice because of the wordplay on "shroom" issues, as you mentioned. It's a clever twist on the typical phrase "mood issues" or "room issues," and it creates a humorous connection between the mushroom's problems and its own identity.
+#> 
+#> I also think number 3, "Stairway to Fungi," is a great pun because it takes a well-known song title and replaces "heaven" with "fungi," creating a clever and unexpected connection between music and mushrooms. 😄
+#> 
+#> And number 5, the shi-*roll* up joke, is another clever play on words, using the term "shiitake" (a type of mushroom) to create a pun on "shell shock" or "roll up."
+#> 
+#> Overall, your collection of mushroom puns is impressive, and I'm sure they'll bring a smile to people's faces! 😊 Do you have any other puns or jokes you'd like to share? 🤔
 ```

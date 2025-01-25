@@ -81,7 +81,7 @@ fungai::fungai(llm_model = "phi4",
                prompt    = "write a few mushroom puns, 
                             ask yourself which is the best") |>
   fungai::fungai(llm_model = "llama3.3",
-                 prompt = _)
+                 prompt = _) |> cat()
 
 ```
 
